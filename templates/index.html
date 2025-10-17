@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Instagram Takipçi Analiz Aracı 💫</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Instagram Takipçi Analiz Aracı</h1>
+
+    <form method="POST" enctype="multipart/form-data" class="upload-form">
+      <label for="zipfile" class="file-label">ZIP Dosyası Seç</label>
+      <input type="file" id="zipfile" name="zipfile" accept=".zip" required>
+      <button type="submit" class="btn">Karşılaştır</button>
+    </form>
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if result %}
+      <div class="result-box">
+        <h2>🚫 Beni Takip Etmeyenler ({{ result|length }})</h2>
+        <ul>
+          {% for u in result %}
+            <li><a href="https://instagram.com/{{ u }}" target="_blank">@{{ u }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+
+  <footer>
+    <p>© 2025 - Oğuzhan Üçüncü | Bilim Trabzon</p>
+  </footer>
+</body>
+</html>
